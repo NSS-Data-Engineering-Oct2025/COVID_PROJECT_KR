@@ -299,7 +299,7 @@ def load_to_snowflake(hospitalizations, conn):
         INSERT INTO RAW.HOSPITAL_METRICS VALUES (
             {', '.join(['%s'] * len(EXPECTED_COLUMNS))}
         )
-    """, rows)
+    """, rows)  # noqa: S608
 
     conn.commit()
     logger.info("Load complete!")
@@ -336,3 +336,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
