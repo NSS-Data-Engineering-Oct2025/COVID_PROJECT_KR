@@ -5,5 +5,7 @@ RUN pip install --no-cache-dir \
     dbt-snowflake \
     requests \
     pandas \
+    polars \
+    pendulum \
     loguru \
     pydantic-settings
