@@ -7,7 +7,6 @@ services:
     env_file: .env
     environment:
       - AIRFLOW__CORE__LOAD_EXAMPLES=false
-      - PYTHONPATH=/opt/airflow/workspace
     volumes:
       - .:/opt/airflow/workspace
       - ./dags:/opt/airflow/dags
