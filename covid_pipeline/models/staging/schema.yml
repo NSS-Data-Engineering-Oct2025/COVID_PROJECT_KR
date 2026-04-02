@@ -1,0 +1,39 @@
+
+version: 2
+
+models:
+  - name: stg_census_state_demographics
+    description: "census demographics by state"
+    columns:
+      - name: state_name
+        description: "State name"
+        data_tests:
+          - unique
+          - not_null
+      - name: total_population
+        description: "Total population of the state"
+      - name: median_household_income
+        description: "Median household income in the state"
+      - name: median_age
+        description: "Median age of the population in the state"
+      - name: health_insurance_coverage
+        description: "Population with health insurance coverage in the state"
+      - name: population_below_poverty_level
+        description: "Percentage of the population living below the poverty level in the state"
+      - name: state_fips_code
+        description: "State FIPS code for joining with other datasets"
+        data_tests:
+          - unique
+          - not_null
+
+  - name: stg_hospital_metrics
+    description: "Hospital metrics by state and week, including COVID-19 specific metrics"
+    columns:
+      - name: week_ending_date
+        description: "The week ending date for the hospital metrics data"
+        data_tests:
+          - not_null
+      - name: state_abbrev
+        description: "State abbreviation for joining with other datasets"
+        data_tests:
+          - not_null
