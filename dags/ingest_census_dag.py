@@ -14,7 +14,7 @@ def ingest_census_data():
     tags=["census", "population", "demographics"],
 )
 
-def census_dag():
+def ingest_census_dag():
     ingest_census_data()
 
-census_dag()
+ingest_census_dag()
