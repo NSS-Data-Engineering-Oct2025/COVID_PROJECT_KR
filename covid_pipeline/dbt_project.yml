@@ -32,3 +32,12 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   covid_pipeline:
     +materialized: table
+    staging:
+      +schema: STAGING
+      +materialized: table
+    intermediate:
+      +schema: INTERMEDIATE
+      +materialized: table
+    marts:
+      +schema: MARTS
+      +materialized: table

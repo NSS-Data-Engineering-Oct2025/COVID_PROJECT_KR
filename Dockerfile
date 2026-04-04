@@ -8,4 +8,6 @@ RUN pip install --no-cache-dir \
     polars \
     pendulum \
     loguru \
-    pydantic-settings
+    pydantic-settings \
+    astronomer-cosmos 
+
