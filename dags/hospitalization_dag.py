@@ -14,7 +14,7 @@ def ingest_hospitalization_data():
     tags=["covid", "cdc", "hospitalization"],
 )
 
-def ingest_hospitalization_dag():
+def hospitalization_dag():
     ingest_hospitalization_data()
 
-ingest_hospitalization_dag()
+hospitalization_dag()

@@ -1,13 +1,11 @@
 import pendulum
 from airflow.sdk import dag, task
 
-
 @task
-def ingest_vaccination_coverage():
-    from Ingestion.cdc.ingest_vaccination_coverage import main
+def ingest_vaccination_trends():
+    from Ingestion.cdc.ingest_vaccination_trends import main
 
     main()
-
 
 @dag(
     schedule="@weekly",
@@ -16,8 +14,7 @@ def ingest_vaccination_coverage():
     tags=["covid", "cdc", "vaccination"],
 )
 
-def ingest_vaccination_coverage_dag():
-    ingest_vaccination_coverage()
+def vaccination_trends_dag():
+    ingest_vaccination_trends()
 
-
-ingest_vaccination_coverage_dag()
+vaccination_trends_dag()
