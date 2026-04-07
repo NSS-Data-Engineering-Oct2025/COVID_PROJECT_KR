@@ -33,17 +33,18 @@ models:
   covid_pipeline:
     staging:
       +schema: STAGING
-      +materialized: view
+      +materialized: table
     intermediate:
       +schema: INTERMEDIATE
-      +materialized: view
+      +materialized: table
     marts:
       +schema: MARTS
       +materialized: table
 
 seeds:
   covid_pipeline:
+    +schema: STAGING
     +quote_columns: false
-    +fips_state_ref:
+    fips_state_ref:
       +column_types:
         st: varchar

@@ -1,4 +1,4 @@
-{{config(materialized='view')}}
+{{config(materialized='table')}}
 
 SELECT 
     census.state_name, 
