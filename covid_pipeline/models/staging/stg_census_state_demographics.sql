@@ -4,11 +4,11 @@ with source_data as (
 
     select distinct
         NAME,
-        B01003_001E, -- Total Population
-        B19013_001E, -- Median Household Income
-        B01002_001E, -- Median Age
-        B27001_001E, -- Health Insurance Coverage
-        B17001_002E, -- Population Below Poverty Level
+        TRY_CAST(B01003_001E AS FLOAT) AS B01003_001E, -- Total Population
+        TRY_CAST(B19013_001E AS FLOAT) AS B19013_001E, -- Median Household Income
+        TRY_CAST(B01002_001E AS FLOAT) AS B01002_001E, -- Median Age
+        TRY_CAST(B27001_001E AS FLOAT) AS B27001_001E, -- Health Insurance Coverage
+        TRY_CAST(B17001_002E AS FLOAT) AS B17001_002E, -- Population Below Poverty Level
         STATE
     from {{ source('covid_raw', 'CENSUS_STATE_DEMOGRAPHICS') }}
 
