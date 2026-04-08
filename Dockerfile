@@ -5,6 +5,6 @@ RUN pip install --no-cache-dir \
     dbt-snowflake \
     astronomer-cosmos \
     requests \
-    pandas \
+    polars \
     loguru \
     pydantic-settings
