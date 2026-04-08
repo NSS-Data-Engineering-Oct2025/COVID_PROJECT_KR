@@ -1,0 +1,72 @@
+
+version: 2
+
+models:
+  - name: mart_state_demographics
+    description: "Aggregated state-level demographics for analysis and reporting"
+    columns:
+      - name: state_name
+        description: "State name for reporting and analysis"
+      - name: state_abbrev
+        description: "State abbreviation for joining with other datasets"
+      - name: vaccination_coverage_pct
+        description: "Percentage of the population that received at least one vaccine dose in the week for the state"
+        tests:
+          - not_null
+      - name: total_population
+        description: "Total population of the state"
+      - name: median_household_income
+        description: "Median household income in the state"
+      - name: median_age
+        description: "Median age of the population in the state"
+      - name: health_insurance_coverage
+        description: "Percentage of the population with health insurance coverage in the state"
+      - name: population_below_poverty
+        description: "Percentage of the population living below the poverty level in the state"
+
+  - name: mart_vaccination_vs_hospitalization_early
+    description: "Combined data on vaccination coverage and hospitalization rates for analysis and reporting"
+    columns:
+      - name: state_abbrev
+        description: "State abbreviation for joining with other datasets"
+        tests:
+          - not_null
+      - name: mmwr_week
+        description: "MMWR week for time-based analysis"
+      - name: week_ending_date
+        description: "The date of the week ending for time-based analysis"
+      - name: weekly_doses_administered
+        description: "Number of vaccine doses administered in the week"
+      - name: weekly_dose_1
+        description: "Number of first doses administered in the week"
+      - name: weekly_series_complete
+        description: "Number of people who completed the vaccine series in the week"
+      - name: total_covid_new_admissions_per_100k
+        description: "Total new COVID-19 hospital admissions per 100k population for the state and week"
+      - name: series_complete_pop_pct
+        description: "Percentage of the population that completed the vaccine series in the week for the state"  
+
+  - name: mart_vaccination_vs_hospitalization_recent
+    description: "Combined data on vaccination coverage and hospitalization rates for analysis and reporting (2024-2026)"
+    columns:
+      - name: week_ending_date
+        description: "The date of the week ending for time-based analysis"
+        tests:
+          - not_null
+      - name: vaccination_coverage_pct
+        description: "Percentage of the population that received at least one vaccine dose in the week for the state"
+      - name: covid_season
+        description: "COVID season for the week (e.g., 2023-2024, 2024-2025, 2025-2026)"  
+        tests:
+          - not_null
+
+  - name: mart_data_quality
+    description: "Data quality metrics for each source"
+    columns:
+      - name: source_name
+        tests:
+          - not_null
+          - unique
+      - name: last_updated
+        tests:
+          - not_null 

@@ -1,0 +1,79 @@
+version: 2
+models:
+  - name: int_hospital_vaccination_2020_2023
+    description: "Intermediate model combining hospital metrics and vaccination trends for 2020-2023"
+    columns:
+      - name: state_abbrev
+        description: "State abbreviation for joining with other datasets"
+        tests:
+          - not_null
+      - name: week_ending_date
+        description: "The date of the week ending for time-based analysis"
+        tests:
+          - not_null
+      - name: weekly_doses_administered
+        description: "Number of vaccine doses administered in the week"
+      - name: weekly_dose_1
+        description: "Number of first doses administered in the week"
+      - name: weekly_series_complete
+        description: "Number of people who completed the vaccine series in the week"
+      - name: total_covid_new_admissions_per_100k
+        description: "Total new COVID-19 hospital admissions per 100k population for the state and week"
+      - name: series_complete_pop_pct
+        description: "Percentage of the population that completed the vaccine series in the week for the state"
+
+  - name: int_hospital_vaccination_2023_2026
+    description: "Intermediate model combining hospital metrics and vaccination trends for 2023-2026"
+    columns:
+      - name: state_name
+        description: "State name for joining with other datasets"
+        tests:
+          - not_null
+      - name: week_ending_date
+        description: "The date of the week ending for time-based analysis"
+        tests:
+          - not_null
+      - name: total_covid_new_admissions_per_100k
+        description: "Total new COVID-19 hospital admissions per 100k population for the state and week"
+
+  - name: int_state_demographics
+    description: "Intermediate model combining state demographics for analysis"
+    columns:
+      - name: state_name
+        description: "State name for joining with other datasets"
+        tests:
+          - not_null
+      - name: state_abbrev
+        description: "State abbreviation for joining with other datasets"
+        tests:
+          - not_null
+      - name: state_fips_code
+        description: "State FIPS code for joining with other datasets"
+        tests:
+          - not_null
+      - name: total_population
+        description: "Total population of the state"
+      - name: median_household_income
+        description: "Median household income in the state"
+      - name: median_age
+        description: "Median age of the population in the state"
+      - name: health_insurance_coverage
+        description: "Population with health insurance coverage in the state"
+      - name: population_below_poverty_level
+        description: "Percentage of the population living below the poverty level in the state"
+
+  - name: int_state_spine
+    description: "A spine table containing unique state identifiers for joining datasets"
+    columns:
+      - name: state_name
+        description: "State name for joining with other datasets"
+        tests:
+          - not_null
+      - name: stusps
+        description: "State abbreviation for joining with other datasets"
+        tests:
+          - not_null
+      - name: state_fips_code
+        description: "State FIPS code for joining with other datasets"
+        tests:
+          - not_null

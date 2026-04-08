@@ -37,3 +37,27 @@ models:
         description: "State abbreviation for joining with other datasets"
         data_tests:
           - not_null
+
+  - name: stg_vaccination_coverage
+    description: "Vaccination coverage data by state and week for 2023-2026"
+    columns:
+      - name: week_ending
+        description: "The date of the vaccination data record"
+        data_tests:
+          - not_null
+      - name: state_name
+        description: "State abbreviation for joining with other datasets"
+        data_tests:
+          - not_null
+
+  - name: stg_vaccination_trends  
+    description: "Vaccination trends data by state and week for 2020-2023"
+    columns:
+      - name: vaccination_date
+        description: "The date of the vaccination data record"
+        data_tests:
+          - not_null
+      - name: state_abbrev
+        description: "State abbreviation for joining with other datasets"
+        data_tests:
+          - not_null
