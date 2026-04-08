@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pendulum
 from airflow.sdk import dag
 from cosmos import DbtTaskGroup, ProfileConfig, ProjectConfig, RenderConfig
@@ -10,7 +12,7 @@ profile_config = ProfileConfig(
         conn_id="snowflake_default",
         profile_args={
             "database": "covid_pipeline",
-            "schema": "STAGING",
+            "schema": "MARTS",
             "warehouse": "COMPUTE_WH",
             "role": "covid_project_role",
         },
@@ -21,17 +23,18 @@ profile_config = ProfileConfig(
     schedule="@weekly",
     start_date=pendulum.datetime(2025, 1, 1, tz="UTC"),
     catchup=False,
-    tags=["dbt", "staging", "cdc", "hospitalization"],
+    tags=["dbt", "marts"],
 )
-
-def stg_hospitalization_dag():
+def dbt_marts_dag():
     DbtTaskGroup(
-        group_id="dbt_stg_hospitalization",
-        project_config=ProjectConfig("/opt/airflow/workspace/covid_pipeline"),
+        group_id="dbt_marts",
+        project_config=ProjectConfig(
+            dbt_project_path=Path("/opt/airflow/workspace/covid_pipeline"),
+        ),
         profile_config=profile_config,
         render_config=RenderConfig(
-            select=["stg_hospitalization"]
+            select=["marts"]
         ),
     )
 
-stg_hospitalization_dag()
+dbt_marts_dag()

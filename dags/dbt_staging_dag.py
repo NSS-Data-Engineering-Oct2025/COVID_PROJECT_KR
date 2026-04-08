@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pendulum
 from airflow.sdk import dag
 from cosmos import DbtTaskGroup, ProfileConfig, ProjectConfig, RenderConfig
@@ -21,17 +23,18 @@ profile_config = ProfileConfig(
     schedule="@weekly",
     start_date=pendulum.datetime(2025, 1, 1, tz="UTC"),
     catchup=False,
-    tags=["dbt", "staging", "census"],
+    tags=["dbt", "staging"],
 )
-
-def stg_census_dag():
+def dbt_staging_dag():
     DbtTaskGroup(
-        group_id="dbt_stg_census",
-        project_config=ProjectConfig("/opt/airflow/workspace/covid_pipeline"),
+        group_id="dbt_staging",
+        project_config=ProjectConfig(
+            dbt_project_path=Path("/opt/airflow/workspace/covid_pipeline"),
+        ),
         profile_config=profile_config,
         render_config=RenderConfig(
-            select=["stg_census_state_demographics"]
+            select=["staging"]
         ),
     )
 
-stg_census_dag()
+dbt_staging_dag()
