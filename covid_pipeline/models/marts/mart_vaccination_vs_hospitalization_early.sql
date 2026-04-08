@@ -26,6 +26,7 @@ with hosp_vax_20_23 as (
         total_covid_icu_patients / NULLIF(num_icu_beds, 0) AS covid_icu_occ_rate,
         total_covid_hospitalized / NULLIF(num_inpatient_beds, 0) AS covid_inpatient_occ_rate
     from {{ ref('int_hospital_vaccination_2020_2023') }}
+    WHERE week_ending_date <= '2023-05-31'
 )
 select
     state_abbrev,
