@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: covid_raw
+    description: "Raw data ingested from CDC and Census APIs"
+    database: covid_pipeline
+    schema: RAW 
+    tables:
+      - name: CENSUS_STATE_DEMOGRAPHICS  # Matches your script 'ingest_census.py'
+      - name: HOSPITAL_METRICS
+      - name: VACCINATION_COVERAGE # The 2020-2023 set
+      - name: VACCINATION_TRENDS # The 2024-2026 set

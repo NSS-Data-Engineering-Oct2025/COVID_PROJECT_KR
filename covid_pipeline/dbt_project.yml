@@ -31,6 +31,20 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   covid_pipeline:
-    # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+    staging:
+      +schema: STAGING
+      +materialized: table
+    intermediate:
+      +schema: INTERMEDIATE
+      +materialized: table
+    marts:
+      +schema: MARTS
+      +materialized: table
+
+seeds:
+  covid_pipeline:
+    +schema: STAGING
+    +quote_columns: false
+    fips_state_ref:
+      +column_types:
+        st: varchar
