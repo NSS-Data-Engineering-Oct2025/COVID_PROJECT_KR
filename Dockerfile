@@ -6,7 +6,5 @@ RUN pip install --no-cache-dir \
     astronomer-cosmos \
     requests \
     pandas \
-    polars \
-    pendulum \
     loguru \
     pydantic-settings
